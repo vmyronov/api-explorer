@@ -31,11 +31,9 @@ describe('GET /pokemon', () => {
   it('should use the offset to remove the first x number of results', async () => {
     path = `pokemon?offset=40&limit=10`
     const pokemon = await Posts.getPokemans(path)
-    console.log(pokemon.body.results)
     const pokemonIDs = pokemon.body.results.map(function(pokemon){
       return pokemon.url.slice(-3).slice(0, -1)
     })
-    console.log(pokemonIDs)
     const control = [
       '41', '42', '43',
       '44', '45', '46',
@@ -52,11 +50,9 @@ describe('GET /pokemon', () => {
   it('should have a total pokemon count of 1154', async () => {
     const pokemon = await Posts.getPokemans(path)
     expect(pokemon.body.count).toEqual(1154)
-    console.log(pokemon.body.count)
   })
   it('should have the first pokemon name "bulbasaur"', async () => {
     const pokemon = await Posts.getPokemans(path)
     expect(pokemon.body.results[0].name).toEqual("bulbasaur")
-    console.log(pokemon.body.results[0].name)
   })
 })

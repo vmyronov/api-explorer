@@ -34,7 +34,6 @@ describe('GET /pokemon', () => {
     const pokemonIDs = pokemon.body.results.map(function(pokemon){
       return pokemon.url.slice(-3).slice(0, -1)
     })
-
     const control = [
       '41', '42', '43',
       '44', '45', '46',
@@ -46,5 +45,13 @@ describe('GET /pokemon', () => {
   it('should accept a limit as an integer', async () => {
     const pokemon = await Posts.getPokemans(path, '40')
     expect(pokemon.body.results.length).toBe(40)
+  }) 
+  it('should have a total pokemon count of 1154', async () => {
+    const pokemon = await Posts.getPokemans(path)
+    expect(pokemon.body.count).toEqual(1154)
+  })
+  it('should have the first pokemon name "bulbasaur"', async () => {
+    const pokemon = await Posts.getPokemans(path)
+    expect(pokemon.body.results[0].name).toEqual("bulbasaur")
   })
 })

@@ -31,10 +31,11 @@ describe('GET /pokemon', () => {
   it('should use the offset to remove the first x number of results', async () => {
     path = `pokemon?offset=40&limit=10`
     const pokemon = await Posts.getPokemans(path)
+    console.log(pokemon.body.results)
     const pokemonIDs = pokemon.body.results.map(function(pokemon){
       return pokemon.url.slice(-3).slice(0, -1)
     })
-
+    console.log(pokemonIDs)
     const control = [
       '41', '42', '43',
       '44', '45', '46',
@@ -47,5 +48,11 @@ describe('GET /pokemon', () => {
   it('should accept a limit as an integer', async () => {
     const pokemon = await Posts.getPokemans(path, '40')
     expect(pokemon.body.results.length).toBe(40)
+  }) 
+  // Tried to test the "Count" key's value ->
+  it('Check the count', async () => {
+    path = 'pokemon'
+    expect(path.body.count).toBe(1154)
   })
+  console.log(path.body.count)
 })

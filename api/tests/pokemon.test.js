@@ -52,7 +52,7 @@ describe('GET /pokemon', () => {
   // Tried to test the "Count" key's value ->
   it('Check the count', async () => {
     path = 'pokemon'
-    expect(path.body.count).toBe(1154)
+    expect(path.body.count).toEqual(1154)
+    console.log(path.body.count)
   })
-  console.log(path.body.count)
 })

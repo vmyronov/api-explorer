@@ -49,13 +49,12 @@ describe('GET /pokemon', () => {
     const pokemon = await Posts.getPokemans(path, '40')
     expect(pokemon.body.results.length).toBe(40)
   }) 
-  // Tried to test the "Count" key's value ->
-  it('Check the count', async () => {
+  it('should have a total pokemon count of 1154', async () => {
     const pokemon = await Posts.getPokemans(path)
     expect(pokemon.body.count).toEqual(1154)
     console.log(pokemon.body.count)
   })
-  it('The first one should be "bulbasaur', async () => {
+  it('should have the first pokemon name "bulbasaur"', async () => {
     const pokemon = await Posts.getPokemans(path)
     expect(pokemon.body.results[0].name).toEqual("bulbasaur")
     console.log(pokemon.body.results[0].name)

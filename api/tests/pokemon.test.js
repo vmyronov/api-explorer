@@ -41,7 +41,6 @@ describe('GET /pokemon', () => {
       '47', '48', '49',
       '50'
     ]
-    expect(pokemon.body.results.length).toBe(10)
     expect(pokemonIDs).toEqual(control)
   })
   it('should accept a limit as an integer', async () => {
